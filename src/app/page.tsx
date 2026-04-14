@@ -29,31 +29,74 @@ const STATS = [
   { icon: "projects", value: "3246", label: "PROJECTS DONE", desc: "With years of experience placing and managing freight and cargo projects across the globe appropriately" },
 ];
 
+const Badge = ({ children }: { children: React.ReactNode }) => (
+  <div style={{ width: 68, height: 68, borderRadius: 20, backgroundColor: "#ede9fe", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    {children}
+  </div>
+);
+
 const STAT_ICONS: Record<string, React.ReactNode> = {
   package: (
-    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#9333ea" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-      <polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
-    </svg>
+    <Badge>
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+        {/* lid */}
+        <rect x="3" y="3" width="32" height="11" rx="3" fill="#2d1b69"/>
+        {/* body */}
+        <rect x="3" y="12" width="32" height="23" rx="3" fill="#9333ea"/>
+        {/* ribbon cross */}
+        <rect x="15" y="3" width="8" height="32" fill="rgba(255,255,255,0.18)"/>
+        <rect x="3" y="17" width="32" height="6" fill="rgba(255,255,255,0.18)"/>
+      </svg>
+    </Badge>
   ),
   warehouse: (
-    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#9333ea" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-      <polyline points="9 22 9 12 15 12 15 22"/>
-    </svg>
+    <Badge>
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+        {/* roof */}
+        <polygon points="19,2 36,14 2,14" fill="#2d1b69"/>
+        {/* body */}
+        <rect x="3" y="13" width="32" height="23" rx="2" fill="#9333ea"/>
+        {/* door */}
+        <rect x="14" y="24" width="10" height="12" rx="2" fill="#2d1b69"/>
+        {/* windows */}
+        <rect x="5" y="18" width="8" height="5" rx="1.5" fill="rgba(255,255,255,0.3)"/>
+        <rect x="25" y="18" width="8" height="5" rx="1.5" fill="rgba(255,255,255,0.3)"/>
+      </svg>
+    </Badge>
   ),
   truck: (
-    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#9333ea" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="1" y="3" width="15" height="13" rx="1"/>
-      <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
-      <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
-    </svg>
+    <Badge>
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+        {/* cargo body */}
+        <rect x="1" y="8" width="23" height="18" rx="3" fill="#9333ea"/>
+        {/* cab */}
+        <rect x="24" y="13" width="13" height="13" rx="3" fill="#2d1b69"/>
+        {/* windshield */}
+        <rect x="25" y="14" width="9" height="7" rx="1.5" fill="rgba(255,255,255,0.28)"/>
+        {/* undercarriage */}
+        <rect x="1" y="24" width="36" height="4" rx="2" fill="#7c3aed"/>
+        {/* wheel left */}
+        <circle cx="9" cy="30" r="5" fill="#1a0f3d"/>
+        <circle cx="9" cy="30" r="2.5" fill="#6d28d9"/>
+        {/* wheel right */}
+        <circle cx="29" cy="30" r="5" fill="#1a0f3d"/>
+        <circle cx="29" cy="30" r="2.5" fill="#6d28d9"/>
+      </svg>
+    </Badge>
   ),
   projects: (
-    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#9333ea" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="7" width="20" height="14" rx="2"/>
-      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-    </svg>
+    <Badge>
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+        {/* base */}
+        <rect x="2" y="34" width="34" height="2.5" rx="1.25" fill="#2d1b69"/>
+        {/* bar 1 short */}
+        <rect x="4" y="24" width="9" height="10" rx="2" fill="#2d1b69"/>
+        {/* bar 2 medium */}
+        <rect x="15" y="15" width="9" height="19" rx="2" fill="#7c3aed"/>
+        {/* bar 3 tall */}
+        <rect x="26" y="7" width="9" height="27" rx="2" fill="#9333ea"/>
+      </svg>
+    </Badge>
   ),
 };
 
@@ -108,13 +151,40 @@ export default function HomePage() {
         <div className="sg3" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", gap: "24px" }}>
           {[
             { icon: (
-              <svg width="38" height="38" viewBox="0 0 24 24" fill="#9333ea" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              /* Quality — gold medal badge with star */
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                <circle cx="22" cy="25" r="16" fill="#9333ea"/>
+                <circle cx="22" cy="25" r="11" fill="#2d1b69"/>
+                <polygon points="22,15 24.4,21.3 31,21.3 25.8,25.1 27.8,31.5 22,27.5 16.2,31.5 18.2,25.1 13,21.3 19.6,21.3" fill="#d4af37"/>
+                <rect x="17" y="2" width="4" height="10" rx="2" fill="#7c3aed"/>
+                <rect x="23" y="2" width="4" height="10" rx="2" fill="#9333ea"/>
+              </svg>
             ), title: "QUALITY DRIVEN", desc: "Over the years now, we've proven our quality without compromise of any form, as satisfying our customers is our sole objective and aimed target." },
             { icon: (
-              <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#9333ea" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              /* Customer — two flat person silhouettes */
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                {/* back person */}
+                <circle cx="28" cy="14" r="7" fill="#7c3aed"/>
+                <path d="M15 44 Q19 30 28 30 Q37 30 41 44Z" fill="#7c3aed"/>
+                {/* front person */}
+                <circle cx="17" cy="15" r="8" fill="#2d1b69"/>
+                <path d="M3 44 Q7 30 17 30 Q27 30 31 44Z" fill="#2d1b69"/>
+              </svg>
             ), title: "CUSTOMER FOCUSED", desc: "Our customers remain the greatest source of our strength & pride. You are the reason we are hard bent on giving you more than expected." },
             { icon: (
-              <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#9333ea" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              /* Global — filled globe with grid lines */
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                <circle cx="22" cy="22" r="19" fill="#9333ea"/>
+                {/* equator */}
+                <rect x="3" y="20" width="38" height="4" fill="#2d1b69"/>
+                {/* tropic lines */}
+                <rect x="5" y="12" width="34" height="3" rx="1.5" fill="rgba(45,27,105,0.5)"/>
+                <rect x="5" y="29" width="34" height="3" rx="1.5" fill="rgba(45,27,105,0.5)"/>
+                {/* central meridian */}
+                <ellipse cx="22" cy="22" rx="6" ry="19" fill="rgba(45,27,105,0.35)"/>
+                {/* outer ring */}
+                <circle cx="22" cy="22" r="19" stroke="#2d1b69" strokeWidth="2.5" fill="none"/>
+              </svg>
             ), title: "GLOBAL SOURCING", desc: "With us there's no discrimination in our sourcing. We welcome every bit of idea to make our world a better resourceful place. Always the best service." },
           ].map((f, i) => (
             <Reveal key={f.title} direction="up" delay={i * 120} duration={600}>
@@ -172,7 +242,7 @@ export default function HomePage() {
             {STATS.map((s, i) => (
               <Reveal key={s.label} direction="up" delay={i * 100} duration={600}>
                 <div style={{ padding: "24px 16px" }}>
-                  <div style={{ margin: "0 auto 12px", width: "56px", height: "56px", display: "flex", alignItems: "center", justifyContent: "center" }}>{STAT_ICONS[s.icon]}</div>
+                  <div style={{ margin: "0 auto 16px", display: "inline-flex" }}>{STAT_ICONS[s.icon]}</div>
                   <CountUp target={Number(s.value)} duration={1800} className="stat-val" style={{ fontSize: "32px", fontWeight: "700", color: TEAL, marginBottom: "6px", display: "block" }} />
                   <h4 style={{ fontSize: "12px", fontWeight: "700", color: "#222", textTransform: "uppercase" as const, marginBottom: "8px" }}>{s.label}</h4>
                   <p style={{ fontSize: "12px", color: "#888", lineHeight: "1.6" }}>{s.desc}</p>
