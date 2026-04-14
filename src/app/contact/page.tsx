@@ -23,7 +23,7 @@ export default function ContactPage() {
       <PageHero title="Contact Us" breadcrumb="Home / Contact Us" />
 
       <section style={{ backgroundColor: "#fff", padding: "60px 0" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "50px" }}>
+        <div className="sg2" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", gap: "50px" }}>
 
           {/* Contact Form */}
           <div>

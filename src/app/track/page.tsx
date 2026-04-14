@@ -16,7 +16,7 @@ export default function TrackPage() {
       <PageHero title="Track Shipment" breadcrumb="Track / Parcel" />
 
       <section style={{ backgroundColor: "#fff", padding: "60px 0" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", display: "grid", gridTemplateColumns: "2fr 1fr", gap: "50px", alignItems: "start" }}>
+        <div className="sg2-w" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", gap: "50px", alignItems: "start" }}>
           <div>
             <h2 style={{ fontSize: "22px", fontWeight: "600", color: "#222", marginBottom: "24px" }}>Tracking Number</h2>
             <div style={{ display: "flex", gap: "10px", marginBottom: "28px" }}>

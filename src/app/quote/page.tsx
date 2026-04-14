@@ -34,7 +34,7 @@ export default function QuotePage() {
               <p style={{ color: "#2e7d32", fontWeight: "600" }}>✓ Quote request submitted! We&apos;ll respond to info@freeholdexpress.com shortly.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+            <form onSubmit={handleSubmit} className="form-grid2">
               {[
                 { name: "name", placeholder: "Full Name *", type: "text", col: 1 },
                 { name: "email", placeholder: "Email Address *", type: "email", col: 1 },

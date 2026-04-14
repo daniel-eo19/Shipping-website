@@ -13,7 +13,7 @@ export default function AboutPage() {
 
       {/* Our Edge section */}
       <section style={{ backgroundColor: "#fff", padding: "60px 0" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "50px", alignItems: "start" }}>
+        <div className="sg2" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", gap: "50px", alignItems: "start" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="https://images.pexels.com/photos/36552175/pexels-photo-36552175/free-photo-of-warehouse-worker-handling-box-on-storage-aisle.jpeg?auto=compress&cs=tinysrgb&w=700&fit=crop" alt="Max Move" style={{ width: "100%", borderRadius: "4px" }} />
           <div>
@@ -37,7 +37,7 @@ export default function AboutPage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px" }}>
           <h2 style={{ fontSize: "24px", fontWeight: "700", textAlign: "center" as const, marginBottom: "8px" }}>OUR CORE VALUES</h2>
           <div style={{ width: "40px", height: "3px", background: GOLD, margin: "0 auto 36px" }} />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }}>
+          <div className="sg3" style={{ gap: "24px" }}>
             {[
               { icon: <svg width="36" height="36" viewBox="0 0 24 24" fill="#9333ea" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>, title: "Quality Driven", desc: "We've proven our quality without compromise of any form, as satisfying our customers is our sole objective." },
               { icon: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#9333ea" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, title: "Customer Focused", desc: "Our customers remain the greatest source of our strength & pride. You are the reason we give more than expected." },

@@ -69,7 +69,7 @@ export default function HomePage() {
     <SiteLayout activePage="/">
 
       {/* ── Hero Slider ── */}
-      <section style={{ position: "relative", width: "100%", height: "678px", overflow: "hidden" }}>
+      <section className="hero-section" style={{ position: "relative", width: "100%", overflow: "hidden" }}>
         {SLIDES.map((s, i) => (
           <div key={i} style={{
             position: "absolute", inset: 0, opacity: i === slide ? 1 : 0,
@@ -80,7 +80,7 @@ export default function HomePage() {
           }}>
             <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.35)" }} />
             <div style={{ position: "relative", zIndex: 2, textAlign: "center" as const, padding: "0 20px" }}>
-              <h2 style={{ color: "#fff", fontSize: "42px", fontWeight: "700", marginBottom: "28px", textShadow: "0 2px 8px rgba(0,0,0,0.4)" }}>{s.heading}</h2>
+              <h2 className="hero-title" style={{ color: "#fff", fontWeight: "700", marginBottom: "28px", textShadow: "0 2px 8px rgba(0,0,0,0.4)" }}>{s.heading}</h2>
               <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
                 <a href="/track" style={{ background: GOLD, color: "#fff", fontWeight: "700", fontSize: "14px", textTransform: "uppercase" as const, padding: "12px 30px", borderRadius: "3px", textDecoration: "none", boxShadow: "0 2px 10px rgba(212,175,55,0.55)", textShadow: "0 1px 2px rgba(0,0,0,0.3)" }}>Track Shipment</a>
                 <a href="/contact" style={{ backgroundColor: NAVY, color: "#fff", fontWeight: "700", fontSize: "14px", textTransform: "uppercase" as const, padding: "12px 30px", borderRadius: "3px", textDecoration: "none" }}>Contact Us</a>
@@ -102,7 +102,7 @@ export default function HomePage() {
 
       {/* ── Feature Cards ── */}
       <section style={{ backgroundColor: "#f9f9f9", padding: "50px 0", borderBottom: "1px solid #eee" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }}>
+        <div className="sg3" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", gap: "24px" }}>
           {[
             { icon: (
               <svg width="38" height="38" viewBox="0 0 24 24" fill="#9333ea" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -125,7 +125,7 @@ export default function HomePage() {
 
       {/* ── About Us ── */}
       <section style={{ backgroundColor: "#fff", padding: "60px 0" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "start" }}>
+        <div className="sg2" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", gap: "60px", alignItems: "start" }}>
           <div>
             <h2 style={{ fontSize: "13px", fontWeight: "700", color: "#222", textTransform: "uppercase" as const, marginBottom: "10px" }}>ABOUT US</h2>
             <div style={{ width: "40px", height: "3px", background: GOLD, marginBottom: "16px" }} />
@@ -157,11 +157,11 @@ export default function HomePage() {
               Our trucking service extends to various locations such as offices, warehouses, exhibition venue to neighboring countries, Malaysia and In United Kingdom.
             </p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "24px", textAlign: "center" as const }}>
+          <div className="sg4" style={{ gap: "24px", textAlign: "center" as const }}>
             {STATS.map((s) => (
               <div key={s.label} style={{ padding: "24px 16px" }}>
                 <div style={{ margin: "0 auto 12px", width: "56px", height: "56px", display: "flex", alignItems: "center", justifyContent: "center" }}>{STAT_ICONS[s.icon]}</div>
-                <div style={{ fontSize: "32px", fontWeight: "700", color: TEAL, marginBottom: "6px" }}>{s.value}</div>
+                <div className="stat-val" style={{ fontSize: "32px", fontWeight: "700", color: TEAL, marginBottom: "6px" }}>{s.value}</div>
                 <h4 style={{ fontSize: "12px", fontWeight: "700", color: "#222", textTransform: "uppercase" as const, marginBottom: "8px" }}>{s.label}</h4>
                 <p style={{ fontSize: "12px", color: "#888", lineHeight: "1.6" }}>{s.desc}</p>
               </div>
@@ -172,7 +172,7 @@ export default function HomePage() {
 
       {/* ── Shipping Info ── */}
       <section style={{ backgroundColor: "#fff", padding: "60px 0", borderTop: "1px solid #f0f0f0" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "50px", alignItems: "center" }}>
+        <div className="sg2" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", gap: "50px", alignItems: "center" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="https://images.pexels.com/photos/36552175/pexels-photo-36552175/free-photo-of-warehouse-worker-handling-box-on-storage-aisle.jpeg?auto=compress&cs=tinysrgb&w=700&fit=crop" alt="Freehold Express Services" style={{ width: "100%", borderRadius: "4px", objectFit: "cover" }} />
           <div>
@@ -194,7 +194,7 @@ export default function HomePage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px" }}>
           <div style={{ width: "40px", height: "3px", background: GOLD, marginBottom: "10px" }} />
           <h2 style={{ color: "#fff", fontSize: "26px", fontWeight: "700", textTransform: "uppercase" as const, marginBottom: "24px" }}>WORLDWIDE DELIVERY</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}>
+          <div className="sg3" style={{ gap: "16px" }}>
             {[
               "https://images.unsplash.com/photo-1761133381018-aed5063d22fe?w=700&q=85&auto=format&fit=crop",
               "https://images.unsplash.com/photo-1542296332-2e4473faf563?w=700&q=85&auto=format&fit=crop",
@@ -213,7 +213,7 @@ export default function HomePage() {
           <h5 style={{ textAlign: "center" as const, fontSize: "15px", color: "#666", marginBottom: "36px" }}>
             ~ See What <strong>Our Customers</strong> Say About Us ~
           </h5>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+          <div className="sg2" style={{ gap: "32px" }}>
             {[TESTIMONIALS[testi], TESTIMONIALS[(testi + 1) % TESTIMONIALS.length]].map((t, i) => (
               <div key={i} style={{ padding: "24px", border: "1px solid #eee", borderRadius: "4px" }}>
                 <p style={{ fontSize: "13px", color: "#777", lineHeight: "1.8", marginBottom: "16px", fontStyle: "italic" as const }}>&ldquo;{t.text}&rdquo;</p>
