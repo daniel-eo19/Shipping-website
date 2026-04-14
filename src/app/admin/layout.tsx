@@ -7,10 +7,48 @@ const NAVY = "#2d1b69";
 const TEAL = "#9333ea";
 const GOLD = "linear-gradient(145deg, #ffe566 0%, #d4af37 40%, #a07800 75%, #c9a227 100%)";
 
+/* ── Sidebar SVG icons ── */
+const IcoDashboard = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <rect x="2" y="2" width="9" height="9" rx="2"/>
+    <rect x="13" y="2" width="9" height="9" rx="2"/>
+    <rect x="2" y="13" width="9" height="9" rx="2"/>
+    <rect x="13" y="13" width="9" height="9" rx="2"/>
+  </svg>
+);
+const IcoBox = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2 L2 7 L12 12 L22 7 Z"/>
+    <path d="M2 7 L2 17 L12 22 L12 12 Z" opacity="0.7"/>
+    <path d="M22 7 L22 17 L12 22 L12 12 Z" opacity="0.5"/>
+  </svg>
+);
+const IcoPlus = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <circle cx="12" cy="12" r="10"/>
+    <rect x="11" y="6" width="2" height="12" rx="1" fill="#111827"/>
+    <rect x="6" y="11" width="12" height="2" rx="1" fill="#111827"/>
+  </svg>
+);
+const IcoGlobe = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <circle cx="12" cy="12" r="10"/>
+    <rect x="2" y="11" width="20" height="2" fill="#111827" opacity="0.4"/>
+    <ellipse cx="12" cy="12" rx="4" ry="10" fill="none" stroke="#111827" strokeWidth="1.5" opacity="0.4"/>
+  </svg>
+);
+const IcoLock = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <rect x="5" y="11" width="14" height="11" rx="2"/>
+    <path d="M8 11 V8 a4 4 0 0 1 8 0 V11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+    <circle cx="12" cy="16" r="1.5" fill="#111827" opacity="0.5"/>
+  </svg>
+);
+
 const NAV = [
-  { href: "/admin", label: "Dashboard", icon: "📊" },
-  { href: "/admin/shipments", label: "All Shipments", icon: "📦" },
-  { href: "/admin/shipments/new", label: "Add New Shipment", icon: "➕" },
+  { href: "/admin", label: "Dashboard", icon: <IcoDashboard /> },
+  { href: "/admin/shipments", label: "All Shipments", icon: <IcoBox /> },
+  { href: "/admin/shipments/new", label: "Add New Shipment", icon: <IcoPlus /> },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -71,7 +109,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             padding: "10px 12px", borderRadius: "6px", marginBottom: "4px",
             color: "#6b7280", textDecoration: "none", fontSize: "12px",
           }}>
-            🌐 View Website ↗
+            <IcoGlobe /> View Website ↗
           </a>
           <button onClick={handleLogout} style={{
             width: "100%", display: "flex", alignItems: "center", gap: "10px",
@@ -80,7 +118,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             color: "#6b7280", cursor: "pointer", fontSize: "13px", fontWeight: "600",
             textAlign: "left" as const,
           }}>
-            🔒 Sign Out
+            <IcoLock /> Sign Out
           </button>
         </div>
       </aside>

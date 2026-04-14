@@ -105,8 +105,14 @@ function RouteVisual({ shipment }: { shipment: Shipment }) {
   return (
     <div style={{ padding: "20px 0" }}>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", fontWeight: "700", color: NAVY, marginBottom: "4px" }}>
-        <span>📦 {shipment.origin}</span>
-        <span>{shipment.destination} 🏁</span>
+        <span style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill={TEAL}><path d="M12 2 L2 7 L12 12 L22 7 Z"/><path d="M2 7 L2 17 L12 22 L12 12 Z" opacity="0.7"/><path d="M22 7 L22 17 L12 22 L12 12 Z" opacity="0.5"/></svg>
+          {shipment.origin}
+        </span>
+        <span style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+          {shipment.destination}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#059669"><circle cx="12" cy="12" r="10"/><path d="M8 12 L11 15 L16 9" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" fill="none"/></svg>
+        </span>
       </div>
       <div style={{ overflowX: "auto" }}>
         <svg width="100%" viewBox={`0 0 ${W} ${H}`} style={{ display: "block", maxWidth: "100%" }}>
@@ -124,24 +130,36 @@ function RouteVisual({ shipment }: { shipment: Shipment }) {
           <circle cx={startX} cy={H / 2} r="7" fill={TEAL} />
           {/* Destination dot */}
           <circle cx={endX} cy={H / 2} r="7" fill={isDone ? "#059669" : "#d1d5db"} />
-          {/* Current location marker */}
+          {/* Current location marker — flat plane */}
           {!isDone && (
-            <>
-              <circle cx={currentX} cy={currentY} r="10" fill="#fff" stroke={TEAL} strokeWidth="2.5" />
-              <text x={currentX} y={currentY + 4} textAnchor="middle" fontSize="10">✈</text>
-            </>
+            <g transform={`translate(${currentX}, ${currentY})`}>
+              <circle r="11" fill="#fff" stroke={TEAL} strokeWidth="2.5"/>
+              {/* top-down plane pointing right */}
+              <ellipse cx="0" cy="0" rx="2.5" ry="7" fill={TEAL}/>
+              <ellipse cx="0" cy="-1" rx="7" ry="2" fill="#7c3aed"/>
+              <ellipse cx="0" cy="5" rx="3.5" ry="1.5" fill="#2d1b69"/>
+            </g>
           )}
+          {/* Destination — filled check */}
           {isDone && (
-            <text x={endX} y={H / 2 + 4} textAnchor="middle" fontSize="12">✓</text>
+            <g transform={`translate(${endX}, ${H / 2})`}>
+              <circle r="7" fill="#059669"/>
+              <path d="M-3,0 L-0.5,2.5 L4,-2.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" fill="none"/>
+            </g>
           )}
         </svg>
       </div>
       <div style={{ display: "flex", justifyContent: "center", fontSize: "12px", color: "#6b7280", marginTop: "4px" }}>
         <span style={{
+          display: "inline-flex", alignItems: "center", gap: "5px",
           backgroundColor: "#f3f4f6", border: "1px solid #e5e7eb",
           borderRadius: "12px", padding: "3px 12px",
         }}>
-          📍 {shipment.currentLocation}
+          <svg width="12" height="12" viewBox="0 0 24 24" fill={TEAL}>
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <circle cx="12" cy="9" r="2.5" fill="#fff"/>
+          </svg>
+          {shipment.currentLocation}
         </span>
       </div>
     </div>
@@ -342,8 +360,9 @@ export default function TrackPage() {
               backgroundColor: "#fff8f8", border: "1px solid #fca5a5",
               borderRadius: "8px", padding: "20px 24px",
             }}>
-              <p style={{ color: "#991b1b", fontWeight: "700", fontSize: "14px", marginBottom: "6px" }}>
-                ✗ Shipment Not Found
+              <p style={{ color: "#991b1b", fontWeight: "700", fontSize: "14px", marginBottom: "6px", display: "flex", alignItems: "center", gap: "7px" }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#ef4444"><circle cx="12" cy="12" r="10"/><path d="M8 8 L16 16 M16 8 L8 16" stroke="#fff" strokeWidth="2.5" strokeLinecap="round"/></svg>
+                Shipment Not Found
               </p>
               <p style={{ color: "#6b7280", fontSize: "13px", margin: 0 }}>{error}</p>
             </div>
@@ -469,16 +488,60 @@ export default function TrackPage() {
             </div>
             <div className="sg3" style={{ gap: "20px" }}>
               {[
-                { icon: "📋", title: "Label Created", desc: "Shipment registered and documentation prepared" },
-                { icon: "🚚", title: "In Transit", desc: "Package moving through our global logistics network" },
-                { icon: "✅", title: "Delivered", desc: "Safe and confirmed delivery to your recipient" },
+                {
+                  icon: (
+                    <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                      {/* clipboard body */}
+                      <rect x="7" y="8" width="30" height="34" rx="4" fill="#9333ea"/>
+                      {/* clip bar */}
+                      <rect x="15" y="4" width="14" height="8" rx="3" fill="#2d1b69"/>
+                      {/* lines */}
+                      <rect x="13" y="20" width="18" height="2.5" rx="1.25" fill="rgba(255,255,255,0.5)"/>
+                      <rect x="13" y="26" width="14" height="2.5" rx="1.25" fill="rgba(255,255,255,0.5)"/>
+                      <rect x="13" y="32" width="10" height="2.5" rx="1.25" fill="rgba(255,255,255,0.5)"/>
+                    </svg>
+                  ),
+                  title: "Label Created", desc: "Shipment registered and documentation prepared",
+                },
+                {
+                  icon: (
+                    <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                      {/* cargo body */}
+                      <rect x="2" y="12" width="28" height="20" rx="3" fill="#9333ea"/>
+                      {/* cab */}
+                      <rect x="30" y="18" width="12" height="14" rx="3" fill="#2d1b69"/>
+                      {/* windshield */}
+                      <rect x="31" y="19" width="9" height="7" rx="1.5" fill="rgba(255,255,255,0.3)"/>
+                      {/* undercarriage */}
+                      <rect x="2" y="30" width="40" height="4" rx="2" fill="#7c3aed"/>
+                      {/* wheel L */}
+                      <circle cx="11" cy="36" r="5" fill="#1a0f3d"/>
+                      <circle cx="11" cy="36" r="2.5" fill="#6d28d9"/>
+                      {/* wheel R */}
+                      <circle cx="33" cy="36" r="5" fill="#1a0f3d"/>
+                      <circle cx="33" cy="36" r="2.5" fill="#6d28d9"/>
+                    </svg>
+                  ),
+                  title: "In Transit", desc: "Package moving through our global logistics network",
+                },
+                {
+                  icon: (
+                    <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                      {/* circle */}
+                      <circle cx="22" cy="22" r="19" fill="#059669"/>
+                      {/* checkmark */}
+                      <path d="M12 22 L19 29 L32 15" stroke="#fff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                    </svg>
+                  ),
+                  title: "Delivered", desc: "Safe and confirmed delivery to your recipient",
+                },
               ].map(f => (
                 <div key={f.title} style={{
                   backgroundColor: "#f9fafb", borderRadius: "10px",
                   padding: "28px 24px", textAlign: "center" as const,
                   border: "1px solid #f0f0f0",
                 }}>
-                  <div style={{ fontSize: "32px", marginBottom: "12px" }}>{f.icon}</div>
+                  <div style={{ display: "flex", justifyContent: "center", marginBottom: "14px" }}>{f.icon}</div>
                   <h4 style={{ fontSize: "14px", fontWeight: "700", color: NAVY, marginBottom: "8px" }}>{f.title}</h4>
                   <p style={{ fontSize: "13px", color: "#6b7280", lineHeight: "1.7", margin: 0 }}>{f.desc}</p>
                 </div>
