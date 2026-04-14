@@ -171,54 +171,123 @@ function Timeline({ shipment }: { shipment: Shipment }) {
   const events = [...shipment.events].reverse(); // newest first
   return (
     <div>
-      <h3 style={{ fontSize: "14px", fontWeight: "700", color: NAVY, marginBottom: "16px", textTransform: "uppercase" as const, letterSpacing: "0.5px" }}>
-        Tracking History
-      </h3>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
+        <h3 style={{ fontSize: "14px", fontWeight: "700", color: NAVY, textTransform: "uppercase" as const, letterSpacing: "0.5px", margin: 0 }}>
+          Tracking History
+        </h3>
+        <span style={{ fontSize: "11px", color: "#9ca3af" }}>
+          {events.length} event{events.length !== 1 ? "s" : ""}
+        </span>
+      </div>
+
       <div style={{ position: "relative" }}>
-        {/* Vertical line */}
+        {/* Animated vertical line */}
         <div style={{
-          position: "absolute", left: "11px", top: "12px", bottom: "12px",
-          width: "2px", backgroundColor: "#e5e7eb",
-        }} />
+          position: "absolute", left: "15px", top: "16px", bottom: "16px",
+          width: "2px", backgroundColor: "#e5e7eb", transformOrigin: "top",
+          animation: "drawLine 0.8s ease both",
+        }}>
+          {/* Filled progress portion */}
+          <div style={{
+            position: "absolute", top: 0, left: 0, right: 0,
+            height: `${(1 / events.length) * 100}%`,
+            background: `linear-gradient(to bottom, ${TEAL}, #c4b5fd)`,
+          }} />
+        </div>
+
         {events.map((evt, i) => {
           const cfg = STATUS_CONFIG[evt.status];
           const isLatest = i === 0;
+          const isPast   = i > 0;
+          const delay    = `${i * 0.1}s`;
+
           return (
-            <div key={evt.id} style={{
-              display: "flex", gap: "16px", marginBottom: "20px",
-              position: "relative",
-            }}>
-              {/* Dot */}
-              <div style={{
-                width: "24px", height: "24px", borderRadius: "50%", flexShrink: 0,
-                backgroundColor: isLatest ? TEAL : "#fff",
-                border: `2px solid ${isLatest ? TEAL : "#d1d5db"}`,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                zIndex: 1,
-              }}>
-                {isLatest && <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "#fff" }} />}
-              </div>
-              {/* Content */}
-              <div style={{
-                flex: 1, backgroundColor: isLatest ? "#faf5ff" : "#fafafa",
-                border: `1px solid ${isLatest ? "#c4b5fd" : "#f0f0f0"}`,
-                borderRadius: "8px", padding: "12px 16px",
-              }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px", flexWrap: "wrap" }}>
-                  <span style={{
-                    padding: "2px 8px", borderRadius: "10px", fontSize: "10px", fontWeight: "700",
-                    backgroundColor: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}`,
-                  }}>
-                    {cfg.label}
-                  </span>
-                  {isLatest && <span style={{ fontSize: "10px", color: TEAL, fontWeight: "700" }}>LATEST UPDATE</span>}
+            <div
+              key={evt.id}
+              style={{
+                display: "flex", gap: "20px", marginBottom: "16px",
+                position: "relative",
+                animation: `slideInLeft 0.45s ease both`,
+                animationDelay: delay,
+              }}
+            >
+              {/* Dot + ring */}
+              <div style={{ position: "relative", flexShrink: 0, width: "32px", display: "flex", alignItems: "flex-start", justifyContent: "center", paddingTop: "2px" }}>
+                {/* Pulse ring — latest only */}
+                {isLatest && (
+                  <div style={{
+                    position: "absolute", top: "2px", left: "50%", transform: "translateX(-50%)",
+                    width: "28px", height: "28px", borderRadius: "50%",
+                    border: `2px solid ${TEAL}`,
+                    animation: "ringPulse 1.6s ease-out infinite",
+                  }} />
+                )}
+                {/* Dot */}
+                <div style={{
+                  width: "28px", height: "28px", borderRadius: "50%", flexShrink: 0,
+                  backgroundColor: isLatest ? TEAL : isPast ? "#ede9fe" : "#f3f4f6",
+                  border: `2px solid ${isLatest ? TEAL : isPast ? "#c4b5fd" : "#d1d5db"}`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  zIndex: 2, position: "relative",
+                  animation: `dotPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both`,
+                  animationDelay: delay,
+                }}>
+                  {isLatest && (
+                    <div style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#fff" }} />
+                  )}
+                  {isPast && (
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12 L10 17 L19 8" stroke="#9333ea" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
                 </div>
-                <p style={{ fontSize: "13px", color: "#111827", fontWeight: "600", marginBottom: "4px", margin: "4px 0" }}>
+              </div>
+
+              {/* Card */}
+              <div style={{
+                flex: 1,
+                backgroundColor: isLatest ? "#faf5ff" : "#fff",
+                border: `1px solid ${isLatest ? "#c4b5fd" : "#e5e7eb"}`,
+                borderLeft: `3px solid ${isLatest ? TEAL : isPast ? "#c4b5fd" : "#e5e7eb"}`,
+                borderRadius: "10px",
+                padding: "14px 16px",
+                marginBottom: "4px",
+                animation: isLatest ? "cardGlow 2.5s ease-in-out 0.6s infinite" : "none",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" as const, gap: "6px", marginBottom: "6px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "7px", flexWrap: "wrap" as const }}>
+                    <span style={{
+                      padding: "3px 10px", borderRadius: "12px", fontSize: "10px", fontWeight: "700",
+                      backgroundColor: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}`,
+                    }}>
+                      {cfg.label}
+                    </span>
+                    {isLatest && (
+                      <span style={{
+                        fontSize: "9px", color: "#fff", fontWeight: "700",
+                        backgroundColor: TEAL, padding: "2px 8px", borderRadius: "10px",
+                        letterSpacing: "0.5px",
+                      }}>
+                        ● LATEST
+                      </span>
+                    )}
+                  </div>
+                  <span style={{ fontSize: "11px", color: "#9ca3af", whiteSpace: "nowrap" as const }}>
+                    {formatDateTime(evt.timestamp)}
+                  </span>
+                </div>
+
+                <p style={{ fontSize: "13px", color: "#111827", fontWeight: "600", margin: "0 0 4px" }}>
                   {evt.description}
                 </p>
-                <p style={{ fontSize: "11px", color: "#6b7280", margin: 0 }}>
-                  {formatDateTime(evt.timestamp)} · {evt.location}
-                </p>
+
+                <div style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "11px", color: "#6b7280" }}>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill={isPast ? "#c4b5fd" : "#d1d5db"}>
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                    <circle cx="12" cy="9" r="2.5" fill="#fff"/>
+                  </svg>
+                  {evt.location}
+                </div>
               </div>
             </div>
           );
@@ -300,6 +369,28 @@ export default function TrackPage() {
         @keyframes statusPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
         @keyframes spin { to{transform:rotate(360deg)} }
         @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+        @keyframes slideInLeft {
+          from { opacity:0; transform:translateX(-18px); }
+          to   { opacity:1; transform:translateX(0); }
+        }
+        @keyframes dotPop {
+          0%   { transform:scale(0); opacity:0; }
+          60%  { transform:scale(1.25); }
+          100% { transform:scale(1); opacity:1; }
+        }
+        @keyframes ringPulse {
+          0%   { transform:scale(1);   opacity:0.7; }
+          100% { transform:scale(2.2); opacity:0; }
+        }
+        @keyframes drawLine {
+          from { transform:scaleY(0); }
+          to   { transform:scaleY(1); }
+        }
+        @keyframes cardGlow {
+          0%,100% { box-shadow: 0 0 0 0 rgba(147,51,234,0.15); }
+          50%     { box-shadow: 0 0 0 6px rgba(147,51,234,0); }
+        }
       `}</style>
 
       <PageHero title="Track Shipment" breadcrumb="Home / Track Shipment" />
