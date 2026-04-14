@@ -26,7 +26,7 @@ export default function AboutPage() {
               Our customers-first attitude has allowed us to expand to 53 locations. With new advances in technology, our company continues to grow and adapt to provide you with the best service – and consequently, the best experience – possible.
             </p>
             <p style={{ fontSize: "13px", color: "#666", lineHeight: "1.9" }}>
-              Stop by one of our many locations to see first hand what Freehold Express Services Storage can offer. If you're interested in portable storage, email us.
+              Stop by one of our many locations to see first hand what Freehold Express Services Storage can offer. If you&apos;re interested in portable storage, email us.
             </p>
           </div>
         </div>

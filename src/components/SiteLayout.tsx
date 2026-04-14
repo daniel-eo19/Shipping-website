@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { LogoHeader, LogoFooter } from "./Logo";
 
 const TEAL = "#9333ea";
@@ -39,7 +40,7 @@ export default function SiteLayout({ children, activePage = "/" }: { children: R
       {/* ── Middle Header ── */}
       <div style={{ backgroundColor: "#fff", borderBottom: "1px solid #eee", padding: "12px 0" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "12px" }}>
-          <a href="/"><LogoHeader /></a>
+          <Link href="/"><LogoHeader /></Link>
           <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
             {[
               { icon: (
