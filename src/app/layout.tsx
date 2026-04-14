@@ -15,8 +15,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Webild - Idea to website",
-  description: "Transform your brand with cutting-edge web design and development.",
+  title: "Freehold Express Services",
+  description: "Fast, reliable worldwide shipping and logistics.",
 };
 
 export default function RootLayout({
