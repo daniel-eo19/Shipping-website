@@ -1,0 +1,218 @@
+{
+  "shipments": [
+    {
+      "id": "shp_001",
+      "trackingNumber": "FES7834921056",
+      "status": "in_transit",
+      "service": "Express International",
+      "shipperName": "GlobalTech Solutions Inc.",
+      "shipperAddress": "1200 Harbor Boulevard",
+      "shipperCity": "Los Angeles",
+      "shipperState": "CA",
+      "shipperCountry": "United States",
+      "shipperZip": "90001",
+      "recipientName": "John Adeyemi",
+      "recipientAddress": "45 Broad Street, Victoria Island",
+      "recipientCity": "Lagos",
+      "recipientState": "Lagos State",
+      "recipientCountry": "Nigeria",
+      "recipientZip": "101001",
+      "pkgDescription": "Electronic Components - Medical Devices",
+      "pkgWeight": "2.4 kg",
+      "pkgDimensions": "30 × 20 × 15 cm",
+      "pkgPieces": "1",
+      "pkgType": "Commercial Goods",
+      "pkgValue": "$1,200.00 USD",
+      "origin": "Los Angeles, CA, USA",
+      "destination": "Lagos, Nigeria",
+      "currentLocation": "London Heathrow Transit Hub, UK",
+      "estimatedDelivery": "2026-04-18",
+      "notes": "Fragile contents — handle with care. Customer notified of UK transit stop.",
+      "proofOfDelivery": null,
+      "events": [
+        {
+          "id": "evt_001",
+          "status": "label_created",
+          "location": "Los Angeles, CA, USA",
+          "description": "Shipping label created and order confirmed",
+          "timestamp": "2026-04-12T09:15:00Z"
+        },
+        {
+          "id": "evt_002",
+          "status": "picked_up",
+          "location": "Los Angeles, CA, USA",
+          "description": "Package collected by Freehold Express courier",
+          "timestamp": "2026-04-12T14:30:00Z"
+        },
+        {
+          "id": "evt_003",
+          "status": "in_transit",
+          "location": "LAX International Airport, USA",
+          "description": "Departed origin facility — loaded onto international flight",
+          "timestamp": "2026-04-13T02:10:00Z"
+        },
+        {
+          "id": "evt_004",
+          "status": "arrived_facility",
+          "location": "London Heathrow Transit Hub, UK",
+          "description": "Arrived at international transit hub — package processing underway",
+          "timestamp": "2026-04-14T11:45:00Z"
+        }
+      ],
+      "createdAt": "2026-04-12T09:15:00Z",
+      "updatedAt": "2026-04-14T11:45:00Z"
+    },
+    {
+      "id": "shp_002",
+      "trackingNumber": "FES5291047683",
+      "status": "delivered",
+      "service": "Premium Express",
+      "shipperName": "Meridian Arts Gallery",
+      "shipperAddress": "88 West 57th Street",
+      "shipperCity": "New York",
+      "shipperState": "NY",
+      "shipperCountry": "United States",
+      "shipperZip": "10019",
+      "recipientName": "Sophia Harrington",
+      "recipientAddress": "14 Montague Street",
+      "recipientCity": "London",
+      "recipientState": "England",
+      "recipientCountry": "United Kingdom",
+      "recipientZip": "WC1B 5BT",
+      "pkgDescription": "Artwork — Framed Prints (High Value)",
+      "pkgWeight": "5.8 kg",
+      "pkgDimensions": "80 × 60 × 10 cm",
+      "pkgPieces": "3",
+      "pkgType": "Artwork / Collectibles",
+      "pkgValue": "$4,500.00 USD",
+      "origin": "New York, NY, USA",
+      "destination": "London, United Kingdom",
+      "currentLocation": "London, United Kingdom",
+      "estimatedDelivery": "2026-04-10",
+      "notes": "Delivered and signed by recipient. POD on file.",
+      "proofOfDelivery": null,
+      "events": [
+        {
+          "id": "evt_101",
+          "status": "label_created",
+          "location": "New York, NY, USA",
+          "description": "Shipment booked and label generated",
+          "timestamp": "2026-04-06T10:00:00Z"
+        },
+        {
+          "id": "evt_102",
+          "status": "picked_up",
+          "location": "New York, NY, USA",
+          "description": "Package collected from sender by premium courier",
+          "timestamp": "2026-04-06T15:20:00Z"
+        },
+        {
+          "id": "evt_103",
+          "status": "in_transit",
+          "location": "JFK International Airport, USA",
+          "description": "Cleared export security — loaded onto transatlantic flight",
+          "timestamp": "2026-04-07T01:30:00Z"
+        },
+        {
+          "id": "evt_104",
+          "status": "arrived_facility",
+          "location": "London Heathrow Airport, UK",
+          "description": "Arrived at destination country — transferred to customs",
+          "timestamp": "2026-04-07T14:00:00Z"
+        },
+        {
+          "id": "evt_105",
+          "status": "customs_clearance",
+          "location": "London Heathrow Customs, UK",
+          "description": "Package cleared customs and import duties verified",
+          "timestamp": "2026-04-08T09:30:00Z"
+        },
+        {
+          "id": "evt_106",
+          "status": "out_for_delivery",
+          "location": "Freehold Express London Depot, UK",
+          "description": "Package loaded onto delivery vehicle — out for delivery",
+          "timestamp": "2026-04-10T07:45:00Z"
+        },
+        {
+          "id": "evt_107",
+          "status": "delivered",
+          "location": "14 Montague Street, London, UK",
+          "description": "Package delivered — signed by HARRINGTON, S.",
+          "timestamp": "2026-04-10T11:22:00Z"
+        }
+      ],
+      "createdAt": "2026-04-06T10:00:00Z",
+      "updatedAt": "2026-04-10T11:22:00Z"
+    },
+    {
+      "id": "shp_003",
+      "trackingNumber": "FES3948612057",
+      "status": "delayed",
+      "service": "Standard International",
+      "shipperName": "Al-Futtaim Trading LLC",
+      "shipperAddress": "Festival City, Al Khail Road",
+      "shipperCity": "Dubai",
+      "shipperState": "Dubai",
+      "shipperCountry": "United Arab Emirates",
+      "shipperZip": "00000",
+      "recipientName": "Marcus Chen",
+      "recipientAddress": "220 Bay Street, Suite 1400",
+      "recipientCity": "Toronto",
+      "recipientState": "ON",
+      "recipientCountry": "Canada",
+      "recipientZip": "M5J 2W4",
+      "pkgDescription": "Industrial Parts — Manufacturing Equipment",
+      "pkgWeight": "12.5 kg",
+      "pkgDimensions": "60 × 40 × 35 cm",
+      "pkgPieces": "2",
+      "pkgType": "Industrial / Machinery Parts",
+      "pkgValue": "$3,800.00 USD",
+      "origin": "Dubai, UAE",
+      "destination": "Toronto, ON, Canada",
+      "currentLocation": "Toronto Pearson Airport Customs, Canada",
+      "estimatedDelivery": "2026-04-20",
+      "notes": "Delayed due to additional CBSA inspection on industrial parts. Customer notified by email Apr 13.",
+      "proofOfDelivery": null,
+      "events": [
+        {
+          "id": "evt_201",
+          "status": "label_created",
+          "location": "Dubai, UAE",
+          "description": "Shipment registered and documentation prepared",
+          "timestamp": "2026-04-08T06:00:00Z"
+        },
+        {
+          "id": "evt_202",
+          "status": "picked_up",
+          "location": "Dubai Festival City, UAE",
+          "description": "Package collected by Freehold Express freight team",
+          "timestamp": "2026-04-08T13:45:00Z"
+        },
+        {
+          "id": "evt_203",
+          "status": "in_transit",
+          "location": "Dubai International Airport, UAE",
+          "description": "Shipment departed Dubai — en route to Canada via Frankfurt",
+          "timestamp": "2026-04-09T22:30:00Z"
+        },
+        {
+          "id": "evt_204",
+          "status": "arrived_facility",
+          "location": "Toronto Pearson Airport Customs, Canada",
+          "description": "Arrived in Canada — submitted for CBSA customs inspection",
+          "timestamp": "2026-04-11T08:15:00Z"
+        },
+        {
+          "id": "evt_205",
+          "status": "delayed",
+          "location": "Toronto Pearson Airport Customs, Canada",
+          "description": "Shipment held for additional CBSA inspection on industrial equipment — estimated 2–3 business days",
+          "timestamp": "2026-04-13T10:30:00Z"
+        }
+      ],
+      "createdAt": "2026-04-08T06:00:00Z",
+      "updatedAt": "2026-04-13T10:30:00Z"
+    }
+  ]
+}

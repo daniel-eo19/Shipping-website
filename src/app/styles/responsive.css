@@ -52,6 +52,12 @@
   .stat-val { font-size: 26px !important; }
 }
 
+/* Admin sidebar collapse on mobile */
+@media (max-width: 768px) {
+  .admin-sidebar { width: 100% !important; height: auto !important; position: relative !important; }
+  .admin-layout  { flex-direction: column !important; }
+}
+
 /* Small mobile — ≤ 480px */
 @media (max-width: 480px) {
   .sg4 { grid-template-columns: 1fr; }
