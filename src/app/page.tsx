@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import SiteLayout from "@/components/SiteLayout";
+import { Reveal } from "@/components/Reveal";
 
 const TEAL = "#9333ea";
 const NAVY = "#2d1b69";
-const RED = "#d4af37";
 const GOLD = "linear-gradient(145deg, #ffe566 0%, #d4af37 40%, #a07800 75%, #c9a227 100%)";
 
 const SLIDES = [
@@ -80,8 +80,10 @@ export default function HomePage() {
           }}>
             <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.35)" }} />
             <div style={{ position: "relative", zIndex: 2, textAlign: "center" as const, padding: "0 20px" }}>
-              <h2 className="hero-title" style={{ color: "#fff", fontWeight: "700", marginBottom: "28px", textShadow: "0 2px 8px rgba(0,0,0,0.4)" }}>{s.heading}</h2>
-              <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+              <h2 className="hero-title hero-animate hero-animate-1" style={{ color: "#fff", fontWeight: "700", marginBottom: "28px", textShadow: "0 2px 8px rgba(0,0,0,0.4)" }}>
+                {s.heading}
+              </h2>
+              <div className="hero-animate hero-animate-2" style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" as const }}>
                 <a href="/track" style={{ background: GOLD, color: "#fff", fontWeight: "700", fontSize: "14px", textTransform: "uppercase" as const, padding: "12px 30px", borderRadius: "3px", textDecoration: "none", boxShadow: "0 2px 10px rgba(212,175,55,0.55)", textShadow: "0 1px 2px rgba(0,0,0,0.3)" }}>Track Shipment</a>
                 <a href="/contact" style={{ backgroundColor: NAVY, color: "#fff", fontWeight: "700", fontSize: "14px", textTransform: "uppercase" as const, padding: "12px 30px", borderRadius: "3px", textDecoration: "none" }}>Contact Us</a>
               </div>
@@ -113,12 +115,14 @@ export default function HomePage() {
             { icon: (
               <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#9333ea" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             ), title: "GLOBAL SOURCING", desc: "With us there's no discrimination in our sourcing. We welcome every bit of idea to make our world a better resourceful place. Always the best service." },
-          ].map((f) => (
-            <div key={f.title} style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: "4px", padding: "32px 24px", textAlign: "center" as const }}>
-              <div style={{ display: "flex", justifyContent: "center", marginBottom: "14px" }}>{f.icon}</div>
-              <h4 style={{ fontSize: "13px", fontWeight: "700", color: NAVY, marginBottom: "10px", textTransform: "uppercase" as const }}>{f.title}</h4>
-              <p style={{ fontSize: "13px", color: "#777", lineHeight: "1.7" }}>{f.desc}</p>
-            </div>
+          ].map((f, i) => (
+            <Reveal key={f.title} direction="up" delay={i * 120} duration={600}>
+              <div style={{ background: "#fff", border: "1px solid #e8e8e8", borderRadius: "4px", padding: "32px 24px", textAlign: "center" as const, height: "100%" }}>
+                <div style={{ display: "flex", justifyContent: "center", marginBottom: "14px" }}>{f.icon}</div>
+                <h4 style={{ fontSize: "13px", fontWeight: "700", color: NAVY, marginBottom: "10px", textTransform: "uppercase" as const }}>{f.title}</h4>
+                <p style={{ fontSize: "13px", color: "#777", lineHeight: "1.7" }}>{f.desc}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -126,45 +130,53 @@ export default function HomePage() {
       {/* ── About Us ── */}
       <section style={{ backgroundColor: "#fff", padding: "60px 0" }}>
         <div className="sg2" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", gap: "60px", alignItems: "start" }}>
-          <div>
-            <h2 style={{ fontSize: "13px", fontWeight: "700", color: "#222", textTransform: "uppercase" as const, marginBottom: "10px" }}>ABOUT US</h2>
-            <div style={{ width: "40px", height: "3px", background: GOLD, marginBottom: "16px" }} />
-            <h2 style={{ fontSize: "30px", fontWeight: "700", color: "#222", lineHeight: "1.3", textTransform: "uppercase" as const }}>
-              OUR REAL COMMITMENT REACHES BEYOND STORAGE &amp; DELIVERY.
-            </h2>
-          </div>
-          <div>
-            <p style={{ fontSize: "14px", fontWeight: "600", color: "#222", marginBottom: "14px" }}>
-              Who We Are! Extending Friendship Across The Globe &amp; Improving Total Performance
-            </p>
-            <p style={{ fontSize: "13px", color: "#666", lineHeight: "1.8", marginBottom: "12px" }}>
-              Security, convenience, and access – these are the words that define Freehold Express Services Storage and that drive our growth and success. Thanks to our commitment and dedication to customer satisfaction, Freehold Express Services has become a leader in self-storage.
-            </p>
-            <p style={{ fontSize: "13px", color: "#666", lineHeight: "1.8" }}>
-              Our customers-first attitude has allowed us to expand to 53 locations. With new advances in technology, our company continues to grow and adapt to provide you with the best service. Stop by one of our many locations to see first hand what Freehold Express Services Storage can offer. If you&apos;re interested in portable storage, email us.
-            </p>
-          </div>
+          <Reveal direction="right" duration={700}>
+            <div>
+              <h2 style={{ fontSize: "13px", fontWeight: "700", color: "#222", textTransform: "uppercase" as const, marginBottom: "10px" }}>ABOUT US</h2>
+              <div style={{ width: "40px", height: "3px", background: GOLD, marginBottom: "16px" }} />
+              <h2 style={{ fontSize: "30px", fontWeight: "700", color: "#222", lineHeight: "1.3", textTransform: "uppercase" as const }}>
+                OUR REAL COMMITMENT REACHES BEYOND STORAGE &amp; DELIVERY.
+              </h2>
+            </div>
+          </Reveal>
+          <Reveal direction="left" duration={700} delay={120}>
+            <div>
+              <p style={{ fontSize: "14px", fontWeight: "600", color: "#222", marginBottom: "14px" }}>
+                Who We Are! Extending Friendship Across The Globe &amp; Improving Total Performance
+              </p>
+              <p style={{ fontSize: "13px", color: "#666", lineHeight: "1.8", marginBottom: "12px" }}>
+                Security, convenience, and access – these are the words that define Freehold Express Services Storage and that drive our growth and success. Thanks to our commitment and dedication to customer satisfaction, Freehold Express Services has become a leader in self-storage.
+              </p>
+              <p style={{ fontSize: "13px", color: "#666", lineHeight: "1.8" }}>
+                Our customers-first attitude has allowed us to expand to 53 locations. With new advances in technology, our company continues to grow and adapt to provide you with the best service. Stop by one of our many locations to see first hand what Freehold Express Services Storage can offer. If you&apos;re interested in portable storage, email us.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ── Stats ── */}
       <section style={{ backgroundColor: "#fff", padding: "50px 0", borderTop: "1px solid #f0f0f0" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px" }}>
-          <div style={{ textAlign: "center" as const, marginBottom: "40px" }}>
-            <h1 style={{ fontSize: "24px", fontWeight: "700", textTransform: "uppercase" as const, color: "#222" }}>ABOUT OUR CARGO SHIPMENT</h1>
-            <hr style={{ width: "60px", border: "none", borderTop: "3px solid #d4af37", margin: "16px auto", background: GOLD, height: "3px" }} />
-            <p style={{ fontSize: "13px", color: "#777", maxWidth: "700px", margin: "0 auto", lineHeight: "1.8" }}>
-              Our trucking service extends to various locations such as offices, warehouses, exhibition venue to neighboring countries, Malaysia and In United Kingdom.
-            </p>
-          </div>
+          <Reveal direction="up" duration={600}>
+            <div style={{ textAlign: "center" as const, marginBottom: "40px" }}>
+              <h1 style={{ fontSize: "24px", fontWeight: "700", textTransform: "uppercase" as const, color: "#222" }}>ABOUT OUR CARGO SHIPMENT</h1>
+              <hr style={{ width: "60px", border: "none", borderTop: "3px solid #d4af37", margin: "16px auto", background: GOLD, height: "3px" }} />
+              <p style={{ fontSize: "13px", color: "#777", maxWidth: "700px", margin: "0 auto", lineHeight: "1.8" }}>
+                Our trucking service extends to various locations such as offices, warehouses, exhibition venue to neighboring countries, Malaysia and In United Kingdom.
+              </p>
+            </div>
+          </Reveal>
           <div className="sg4" style={{ gap: "24px", textAlign: "center" as const }}>
-            {STATS.map((s) => (
-              <div key={s.label} style={{ padding: "24px 16px" }}>
-                <div style={{ margin: "0 auto 12px", width: "56px", height: "56px", display: "flex", alignItems: "center", justifyContent: "center" }}>{STAT_ICONS[s.icon]}</div>
-                <div className="stat-val" style={{ fontSize: "32px", fontWeight: "700", color: TEAL, marginBottom: "6px" }}>{s.value}</div>
-                <h4 style={{ fontSize: "12px", fontWeight: "700", color: "#222", textTransform: "uppercase" as const, marginBottom: "8px" }}>{s.label}</h4>
-                <p style={{ fontSize: "12px", color: "#888", lineHeight: "1.6" }}>{s.desc}</p>
-              </div>
+            {STATS.map((s, i) => (
+              <Reveal key={s.label} direction="up" delay={i * 100} duration={600}>
+                <div style={{ padding: "24px 16px" }}>
+                  <div style={{ margin: "0 auto 12px", width: "56px", height: "56px", display: "flex", alignItems: "center", justifyContent: "center" }}>{STAT_ICONS[s.icon]}</div>
+                  <div className="stat-val" style={{ fontSize: "32px", fontWeight: "700", color: TEAL, marginBottom: "6px" }}>{s.value}</div>
+                  <h4 style={{ fontSize: "12px", fontWeight: "700", color: "#222", textTransform: "uppercase" as const, marginBottom: "8px" }}>{s.label}</h4>
+                  <p style={{ fontSize: "12px", color: "#888", lineHeight: "1.6" }}>{s.desc}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -173,35 +185,43 @@ export default function HomePage() {
       {/* ── Shipping Info ── */}
       <section style={{ backgroundColor: "#fff", padding: "60px 0", borderTop: "1px solid #f0f0f0" }}>
         <div className="sg2" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", gap: "50px", alignItems: "center" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="https://images.pexels.com/photos/36552175/pexels-photo-36552175/free-photo-of-warehouse-worker-handling-box-on-storage-aisle.jpeg?auto=compress&cs=tinysrgb&w=700&fit=crop" alt="Freehold Express Services" style={{ width: "100%", borderRadius: "4px", objectFit: "cover" }} />
-          <div>
-            <p style={{ fontSize: "11px", fontWeight: "700", color: TEAL, textTransform: "uppercase" as const, letterSpacing: "2px", marginBottom: "8px" }}>SHIPPING MADE EASY</p>
-            <h2 style={{ fontSize: "26px", fontWeight: "400", color: "#222", marginBottom: "6px" }}>Freehold Express Services</h2>
-            <h3 style={{ fontSize: "14px", fontWeight: "600", color: "#222", textTransform: "uppercase" as const, marginBottom: "16px" }}>ACCESS ANYWHERE, ANYTIME...</h3>
-            <p style={{ fontSize: "13px", color: "#666", lineHeight: "1.8", marginBottom: "12px" }}>
-              Storage is like a hotel room for your stuff! Your storage unit is constructed with concrete and/or steel and has a concrete floor. Units are minimum of 8′ high and come in a wide variety of sizes. The space has its own door — either a regular swing door, or a roll up door.
-            </p>
-            <p style={{ fontSize: "13px", color: "#666", lineHeight: "1.8" }}>
-              Units are rented in 4-week increments. You can access your unit during our extended access hours 7 days a week, 6am-11pm. (Some sites even have 24 hr access!) We have multiple payment options for your convenience.
-            </p>
-          </div>
+          <Reveal direction="right" duration={750}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="https://images.pexels.com/photos/36552175/pexels-photo-36552175/free-photo-of-warehouse-worker-handling-box-on-storage-aisle.jpeg?auto=compress&cs=tinysrgb&w=700&fit=crop" alt="Freehold Express Services" style={{ width: "100%", borderRadius: "4px", objectFit: "cover" }} />
+          </Reveal>
+          <Reveal direction="left" duration={750} delay={150}>
+            <div>
+              <p style={{ fontSize: "11px", fontWeight: "700", color: TEAL, textTransform: "uppercase" as const, letterSpacing: "2px", marginBottom: "8px" }}>SHIPPING MADE EASY</p>
+              <h2 style={{ fontSize: "26px", fontWeight: "400", color: "#222", marginBottom: "6px" }}>Freehold Express Services</h2>
+              <h3 style={{ fontSize: "14px", fontWeight: "600", color: "#222", textTransform: "uppercase" as const, marginBottom: "16px" }}>ACCESS ANYWHERE, ANYTIME...</h3>
+              <p style={{ fontSize: "13px", color: "#666", lineHeight: "1.8", marginBottom: "12px" }}>
+                Storage is like a hotel room for your stuff! Your storage unit is constructed with concrete and/or steel and has a concrete floor. Units are minimum of 8′ high and come in a wide variety of sizes. The space has its own door — either a regular swing door, or a roll up door.
+              </p>
+              <p style={{ fontSize: "13px", color: "#666", lineHeight: "1.8" }}>
+                Units are rented in 4-week increments. You can access your unit during our extended access hours 7 days a week, 6am-11pm. (Some sites even have 24 hr access!) We have multiple payment options for your convenience.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ── Worldwide Delivery ── */}
       <section style={{ backgroundImage: "url('https://images.unsplash.com/photo-1761307234324-0c9eadb951de?w=1920&q=85&auto=format&fit=crop')", backgroundSize: "cover", backgroundPosition: "center", padding: "60px 0" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px" }}>
-          <div style={{ width: "40px", height: "3px", background: GOLD, marginBottom: "10px" }} />
-          <h2 style={{ color: "#fff", fontSize: "26px", fontWeight: "700", textTransform: "uppercase" as const, marginBottom: "24px" }}>WORLDWIDE DELIVERY</h2>
+          <Reveal direction="up" duration={600}>
+            <div style={{ width: "40px", height: "3px", background: GOLD, marginBottom: "10px" }} />
+            <h2 style={{ color: "#fff", fontSize: "26px", fontWeight: "700", textTransform: "uppercase" as const, marginBottom: "24px" }}>WORLDWIDE DELIVERY</h2>
+          </Reveal>
           <div className="sg3" style={{ gap: "16px" }}>
             {[
               "https://images.unsplash.com/photo-1761133381018-aed5063d22fe?w=700&q=85&auto=format&fit=crop",
               "https://images.unsplash.com/photo-1542296332-2e4473faf563?w=700&q=85&auto=format&fit=crop",
               "https://images.unsplash.com/photo-1769144256207-bc4bb75b29db?w=700&q=85&auto=format&fit=crop",
             ].map((src, i) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={i} src={src} alt="Worldwide Delivery" style={{ width: "100%", height: "220px", objectFit: "cover", borderRadius: "4px" }} />
+              <Reveal key={src} direction="up" delay={i * 100} duration={600}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={src} alt="Worldwide Delivery" style={{ width: "100%", height: "220px", objectFit: "cover", borderRadius: "4px", display: "block" }} />
+              </Reveal>
             ))}
           </div>
         </div>
@@ -210,23 +230,27 @@ export default function HomePage() {
       {/* ── Testimonials ── */}
       <section style={{ backgroundColor: "#fff", padding: "60px 0", borderTop: "1px solid #f0f0f0" }}>
         <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 15px" }}>
-          <h5 style={{ textAlign: "center" as const, fontSize: "15px", color: "#666", marginBottom: "36px" }}>
-            ~ See What <strong>Our Customers</strong> Say About Us ~
-          </h5>
+          <Reveal direction="up" duration={600}>
+            <h5 style={{ textAlign: "center" as const, fontSize: "15px", color: "#666", marginBottom: "36px" }}>
+              ~ See What <strong>Our Customers</strong> Say About Us ~
+            </h5>
+          </Reveal>
           <div className="sg2" style={{ gap: "32px" }}>
             {[TESTIMONIALS[testi], TESTIMONIALS[(testi + 1) % TESTIMONIALS.length]].map((t, i) => (
-              <div key={i} style={{ padding: "24px", border: "1px solid #eee", borderRadius: "4px" }}>
-                <p style={{ fontSize: "13px", color: "#777", lineHeight: "1.8", marginBottom: "16px", fontStyle: "italic" as const }}>&ldquo;{t.text}&rdquo;</p>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={t.img} alt={t.name} style={{ width: "52px", height: "52px", borderRadius: "50%", objectFit: "cover" }} />
-                  <div>
-                    <div style={{ fontWeight: "700", fontSize: "13px", color: NAVY }}>{t.name}</div>
-                    <div style={{ fontSize: "12px", color: "#999" }}>{t.location}</div>
-                    <div style={{ color: "#f5a623", fontSize: "13px", letterSpacing: "2px" }}>★★★★★</div>
+              <Reveal key={t.name} direction="up" delay={i * 120} duration={600}>
+                <div style={{ padding: "24px", border: "1px solid #eee", borderRadius: "4px", height: "100%" }}>
+                  <p style={{ fontSize: "13px", color: "#777", lineHeight: "1.8", marginBottom: "16px", fontStyle: "italic" as const }}>&ldquo;{t.text}&rdquo;</p>
+                  <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={t.img} alt={t.name} style={{ width: "52px", height: "52px", borderRadius: "50%", objectFit: "cover" }} />
+                    <div>
+                      <div style={{ fontWeight: "700", fontSize: "13px", color: NAVY }}>{t.name}</div>
+                      <div style={{ fontSize: "12px", color: "#999" }}>{t.location}</div>
+                      <div style={{ color: "#f5a623", fontSize: "13px", letterSpacing: "2px" }}>★★★★★</div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
           <div style={{ display: "flex", justifyContent: "center", gap: "8px", marginTop: "24px" }}>
@@ -240,11 +264,13 @@ export default function HomePage() {
 
       {/* ── Partner Logos ── */}
       <section style={{ backgroundColor: "#f9f9f9", padding: "40px 0", borderTop: "1px solid #eee" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: "50px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px", display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap" as const, gap: "50px" }}>
           {[1, 2, 3, 4].map((i) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img key={i} src={`https://maxmoveshex.com/wp-content/uploads/2017/06/partners-${i}.png`} alt={`Partner ${i}`}
-              style={{ height: "50px", width: "auto", objectFit: "contain", filter: "grayscale(40%)", opacity: 0.85 }} />
+            <Reveal key={i} direction="fade" delay={i * 80} duration={700}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`https://maxmoveshex.com/wp-content/uploads/2017/06/partners-${i}.png`} alt={`Partner ${i}`}
+                style={{ height: "50px", width: "auto", objectFit: "contain", filter: "grayscale(40%)", opacity: 0.85 }} />
+            </Reveal>
           ))}
         </div>
       </section>
