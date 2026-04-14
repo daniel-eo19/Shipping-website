@@ -8,6 +8,7 @@ const TEAL = "#9333ea";
 const GOLD = "linear-gradient(145deg, #ffe566 0%, #d4af37 40%, #a07800 75%, #c9a227 100%)";
 
 const NAV = [
+  { href: "/admin", label: "Dashboard", icon: "📊" },
   { href: "/admin/shipments", label: "All Shipments", icon: "📦" },
   { href: "/admin/shipments/new", label: "Add New Shipment", icon: "➕" },
 ];
@@ -42,7 +43,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
         <nav style={{ flex: 1, padding: "16px 12px" }}>
           {NAV.map(item => {
-            const active = pathname === item.href || (item.href !== "/admin" && pathname.startsWith(item.href) && item.href !== "/admin/shipments/new");
+            const active = item.href === "/admin"
+              ? pathname === "/admin"
+              : item.href === "/admin/shipments"
+                ? pathname === "/admin/shipments" || (pathname.startsWith("/admin/shipments/") && pathname !== "/admin/shipments/new")
+                : pathname === item.href;
             return (
               <a key={item.href} href={item.href} style={{
                 display: "flex", alignItems: "center", gap: "10px",
