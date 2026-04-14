@@ -1,8 +1,8 @@
 {
-  "name": "ai-website-clone-template",
-  "version": "0.3.1",
+  "name": "freehold-express-services",
+  "version": "1.0.0",
   "private": true,
-  "description": "Clone any website into a clean, modern Next.js codebase using AI coding agents",
+  "description": "Freehold Express Services - Shipping & Logistics website",
   "author": "JCodesMore",
   "license": "MIT",
   "repository": {
