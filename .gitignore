@@ -47,3 +47,18 @@ next-env.d.ts
 
 # Local temp files
 temp/
+
+# Template boilerplate — not part of the site
+docs/
+scripts/
+public/images/web-agency-2/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+CHANGELOG.md
+Dockerfile
+Dockerfile.dev
+docker-compose.yml
+.aider.conf.yml
+.clinerules
+.windsurfrules
