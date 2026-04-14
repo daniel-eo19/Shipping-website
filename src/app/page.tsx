@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import SiteLayout from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
+import { CountUp } from "@/components/CountUp";
 
 const TEAL = "#9333ea";
 const NAVY = "#2d1b69";
@@ -172,7 +173,7 @@ export default function HomePage() {
               <Reveal key={s.label} direction="up" delay={i * 100} duration={600}>
                 <div style={{ padding: "24px 16px" }}>
                   <div style={{ margin: "0 auto 12px", width: "56px", height: "56px", display: "flex", alignItems: "center", justifyContent: "center" }}>{STAT_ICONS[s.icon]}</div>
-                  <div className="stat-val" style={{ fontSize: "32px", fontWeight: "700", color: TEAL, marginBottom: "6px" }}>{s.value}</div>
+                  <CountUp target={Number(s.value)} duration={1800} className="stat-val" style={{ fontSize: "32px", fontWeight: "700", color: TEAL, marginBottom: "6px", display: "block" }} />
                   <h4 style={{ fontSize: "12px", fontWeight: "700", color: "#222", textTransform: "uppercase" as const, marginBottom: "8px" }}>{s.label}</h4>
                   <p style={{ fontSize: "12px", color: "#888", lineHeight: "1.6" }}>{s.desc}</p>
                 </div>
