@@ -12,8 +12,8 @@ import { useEffect } from "react";
 //     with your actual values from the snippet URL:
 //     https://embed.tawk.to/{PROPERTY_ID}/{WIDGET_ID}
 // ─────────────────────────────────────────────
-const TAWK_PROPERTY_ID = "YOUR_PROPERTY_ID";
-const TAWK_WIDGET_ID   = "YOUR_WIDGET_ID";
+const TAWK_PROPERTY_ID = "69de40ac5b7c241c31f4a987";
+const TAWK_WIDGET_ID   = "1jm62p97j";
 
 export default function TawkChat() {
   useEffect(() => {
